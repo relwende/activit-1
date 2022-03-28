@@ -1,31 +1,33 @@
-package produit.checkstyle;
+package dev;
 
 /**
  * Classe Produit représentant un produit avec un prix et une référence.
  */
 public class Produit {
+
+	/** declaration des variables */
+
 	private final String reference;
 	private double prix;
-	/**
-	 * C'est la tva
-	 */
-	double tva = 0.20;
+
+	/** C'est la tva */
+
+	public final static double TVA = 0.20;
 
 	public Produit(String reference) {
 		this.reference = reference;
+
 	}
-   /**
-   * @return le prix
-   */
-	
+
+	/**
+	 * @return le prix
+	 */
 	public double getPrix() {
 		return this.prix;
 	}
 
-	/**
-	* modifie le prix
-	*/
-	public final void setPrix(Double prix) {
+	/** modifie le prix. */
+	public final void setPrix(double prix) {
 		this.prix = prix;
 	}
 
@@ -41,7 +43,13 @@ public class Produit {
 	}
 
 	@Override
-    public boolean equals(Object o) {
-		return reference == ((Produit) o).reference;
+	public boolean equals(Object o) {
+		if (o != null && o.getClass() == this.getClass()) {
+			 final Produit pt = (Produit) o;
+			return this.reference == pt.reference;
+		}
+		return false;
+
 	}
+
 }
